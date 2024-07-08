@@ -1,1 +1,39 @@
-<p>home works!</p>
+<div class="container">
+
+    <div class="list" *ngIf="!isAddingNewItem">
+        <ul>
+            <li *ngFor="let product of productList">
+                <img [src]="product.image" [alt]="product.name">
+                <h4>Name: {{ product.name }}</h4>
+                <h5>Price: {{ product.price }}</h5>
+                <p>Description: {{ product.description }} </p>
+            </li>
+        </ul>
+        <button (click)="isAddingNewItem = true">Add New Dish</button>
+    </div>
+
+
+    <div class="form" *ngIf="isAddingNewItem">
+        <form #dishForm="ngForm" >
+            <div class="form-group">
+                <label for="name">Name : </label>
+                <input type="text" name="name" ngModel required>
+            </div>
+            <div class="form-group">
+                <label for="price">Price : </label>
+                <input type="number" name="price" ngModel required>
+            </div>
+            <div class="form-group">
+                <label for="description">Description : </label>
+                <input type="text" name="description" ngModel>
+            </div>
+            <div class="form-group">
+                <label for="image">Image : </label>
+                <input type="file" name="image" ngModel required>
+            </div>
+
+            <button type="button" (click)="submitNewDish(dishForm)">Submit</button>
+        </form>
+    </div>
+
+</div>
